@@ -1,6 +1,8 @@
 <?php
 
-class Application {
+namespace Loader;
+class Application
+{
 
     private static $instance;
 
@@ -8,16 +10,18 @@ class Application {
     {
     }
 
-    public static function getInstance() {
-        if(self::$instance === null) {
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
             self::$instance = new Application();
         }
 
         return self::$instance;
     }
 
-    public function init() {
-        if(!isset($_GET["route"])) {
+    public function init()
+    {
+        if (!isset($_GET["route"])) {
             exit();
         }
 
