@@ -19,4 +19,8 @@ class HomeController extends Controller {
 
        $this->display("home");
     }
+
+    public function qqq() {
+       $this->display("qqq");
+    }
 }

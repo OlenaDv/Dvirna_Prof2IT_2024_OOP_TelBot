@@ -3,8 +3,8 @@
 use Loader\Application;
 use Loader\ClassLoader;
 
-include_once("ClassLoader.php");
+include_once(__DIR__ . "/Loader/ClassLoader.php");
 
-ClassLoader::getInstance();
+\Loader\ClassLoader::getInstance()->init();
 
-Application::getInstance()->init();
+\Loader\Route::getInstance()->init();

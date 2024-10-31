@@ -15,7 +15,14 @@ class ClassLoader
         if (self::$instance === null) {
             self::$instance = new ClassLoader();
         }
+        return self::$instance;
+    }
 
+    /**
+     * @param mixed $instance
+     */
+    public static function init()
+    {
         spl_autoload_register([self::$instance, "load"]);
     }
 

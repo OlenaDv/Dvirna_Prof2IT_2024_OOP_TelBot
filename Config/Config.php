@@ -16,7 +16,17 @@ class Config{
                     "controller" => "\\Controller\\HomeController",
                     "action" => "index",
                     "params" => "",
-            ]
+            ], [
+                    "uri" => "qqq/www",
+                    "controller" => "\\Controller\\HomeController",
+                    "action" => "qqq",
+                    "params" => "",
+                ], [
+                    "uri" => "qqq/www(.+)/(.+)/(.+)",
+                    "controller" => "\\Controller\\ParController",
+                    "action" => "par",
+                    "params" => "$1/$2/$3",
+                ]
             ],
         ];
     }

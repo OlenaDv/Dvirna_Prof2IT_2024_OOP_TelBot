@@ -1,3 +1,5 @@
 It's HTML code
 <br>
-<?php echo $a ?>
+<?php
+
+echo 5;

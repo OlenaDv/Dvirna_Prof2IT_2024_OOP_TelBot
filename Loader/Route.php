@@ -2,7 +2,7 @@
 
 namespace Loader;
 
-use \Config\Config;
+use Config\Config;
 class Route{
     private $route;
     private static $instance;
@@ -14,8 +14,9 @@ class Route{
 
     public static function getInstance()
     {
-        if (self::$instance === null) {
-            self::$instance = new ClassLoader();
+        if(self::$instance === null)
+        {
+            self::$instance = new Route();
         }
 
         return self::$instance;
@@ -37,10 +38,30 @@ class Route{
         }
 
         $routes = $this->route[$_SERVER["REQUEST_METHOD"]];
-        for($i = 0; $count = count($routes); $i < $count; $i++)
+        for($i = 0, $count = count($routes); $i < $count; $i++)
         {
             if(preg_match('#^' . $routes[$i][$uri] . "$#", $segment)){
             $params = $routes[$i]["params"];
+
+            if(strpos($params, "$")!==false){
+                $params = preg_replace('#^' . $routes[$i][$uri] . "$#", $params, $segment);
+                $params = explode("$", $params);
+            } else{
+                $params = [];
+            }
+
+                $class = $routes[$i]["controller"];
+
+                $controller = new $class();
+
+                if(!method_exists($controller, $routes[$i]["action"])) {
+                    // show 404
+
+                }
+
+                call_user_func_array([$controller, $routes[$i]["action"]], $params);
+
+            }
         }
     }
 
